@@ -29,11 +29,6 @@
       <robotNamespace>/val</robotNamespace>
     </plugin>
   </gazebo>
-  <!-- <link name="base_link"/>
-  <joint name="base_link_joint" type="fixed">
-    <parent link="base_link"/>
-    <child  link="pelvis"/>
-  </joint> -->
   <link name="pelvis">
     <inertial>
       <mass value="8.22"/>
@@ -195,13 +190,13 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://val_description/model/meshes/head/head_multisense_no_visor.dae"/>
+        <mesh filename="package://val_description/model/meshes/head/head_multisense.dae"/>
       </geometry>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://val_description/model/meshes/head/head_multisense_no_visor.dae"/>
+        <mesh filename="package://val_description/model/meshes/head/head_multisense.dae"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
@@ -448,7 +443,7 @@
     <axis xyz="1 0 0"/>
     <parent link="rightForearmLink"/>
     <child link="rightWristRollLink"/>
-    <limit effort="14" lower="-0.625" upper="0.62" velocity="1"/>
+    <limit effort="14" lower="-0.2" upper="0.3" velocity="1"/>
     <controller_gains Kd="400" Ki="0.0" Kp="20000"/>
     <dynamics damping="0.1" friction="0.0"/>
   </joint>
@@ -461,7 +456,7 @@
     <axis xyz="0 0 1"/>
     <parent link="rightWristRollLink"/>
     <child link="rightPalm"/>
-    <limit effort="14" lower="-0.49" upper="0.36" velocity="1"/>
+    <limit effort="14" lower="-0.5" upper="0.5" velocity="1"/>
     <controller_gains Kd="400" Ki="0.0" Kp="20000"/>
     <dynamics damping="0.1" friction="0.0"/>
   </joint>
@@ -1036,7 +1031,7 @@
     <axis xyz="1 0 0"/>
     <parent link="leftForearmLink"/>
     <child link="leftWristRollLink"/>
-    <limit effort="14" lower="-0.62" upper="0.625" velocity="1"/>
+    <limit effort="14" lower="-0.2" upper="0.3" velocity="1"/>
     <controller_gains Kd="400" Ki="0.0" Kp="20000"/>
     <dynamics damping="0.1" friction="0.0"/>
   </joint>
@@ -1049,7 +1044,7 @@
     <axis xyz="0 0 1"/>
     <parent link="leftWristRollLink"/>
     <child link="leftPalm"/>
-    <limit effort="14" lower="-0.36" upper="0.49" velocity="1"/>
+    <limit effort="14" lower="-0.5" upper="0.5" velocity="1"/>
     <controller_gains Kd="400" Ki="0.0" Kp="20000"/>
     <dynamics damping="0.1" friction="0.0"/>
   </joint>
@@ -2103,6 +2098,18 @@
       </imu>
     </sensor>
   </gazebo>
+  <link name="leftFootSole_Frame">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+  </link>
+  <joint name="leftFootSole_Offset" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.067  0 -0.09"/>
+    <parent link="leftFoot"/>
+    <child link="leftFootSole_Frame"/>
+  </joint>
   <link name="leftCOP_Frame">
     <inertial>
       <mass value="0.1"/>
@@ -2121,6 +2128,18 @@
   </gazebo>
   <gazebo reference="leftAnkleRoll">
   </gazebo>
+  <link name="rightFootSole_Frame">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+  </link>
+  <joint name="rightFootSole_Offset" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="0.067  0 -0.09"/>
+    <parent link="rightFoot"/>
+    <child link="rightFootSole_Frame"/>
+  </joint>
   <link name="rightCOP_Frame">
     <inertial>
       <mass value="0.1"/>
